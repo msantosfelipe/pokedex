@@ -1,0 +1,35 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px', fullScreenBackdrop: true }"></ngx-loading>
+<ng2-toasty></ng2-toasty>
+<div class="container-fluid banner">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="display-4">Pokedex</h1>
+            <p class="lead">Aplicação desenvolvida em Angular 5 para listar e detalhar Pokémons</p>
+            <p class="lead">
+                Utilizando a API
+                <a target="_blank" href="http://pokeapi.co">
+              Pokéapi
+          </a>
+            </p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" target="_blank" href="https://github.com/msantosfelipe/weather-forecast" role="button">Github</a>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="container space-up card" *ngIf="isNotEmpty(pokemons)">
+    <h4>Lista de Pokémons: (Total: {{ total }})</h4>
+    <div class="container space-up space-down">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 item" *ngFor="let pokemon of pokemons" (click)="selecionar(pokemon)">
+                <span>
+                    {{ pokemon.name | maiusculoPipe }}
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="space-up col-xs-12 col-12">
+        <pagination [firstText]="paginacao.textPrimeiro" [lastText]="paginacao.textUltimo" [nextText]="paginacao.textProximo" [previousText]="paginacao.textAnterior" [totalItems]="paginacao.totalItens" [(ngModel)]="paginacao.pagina" [itemsPerPage]="paginacao.qtdRegistro"
+            (numPages)="paginacao.numPages = $event" (pageChanged)="pageChanged($event)" [maxSize]="paginacao.maxSize" class="pagination-sm justify-content-center" [align]="true" [boundaryLinks]="true" [rotate]="false"></pagination>
+    </div>
+</div>

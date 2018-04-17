@@ -1,0 +1,62 @@
+$cor-primaria: yellow;
+$azul: #0679f9;
+$branco: white;
+$cinza: gray;
+// Gerais
+html,
+body {
+    min-height: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: $cor-primaria;
+    background: url('../imagens/background-pokemon.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.main {
+    min-height: 100vh;
+}
+
+.banner {
+    background-color: $cinza;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    text-align: center;
+    color: $branco;
+}
+
+a {
+    color: $cor-primaria;
+}
+
+.titulo {
+    padding-top: 1em;
+    font-weight: bolder;
+    font-size: 2em;
+    padding-left: 2.5em;
+}
+
+.space-up {
+    padding-top: 1em;
+}
+
+.space-down {
+    padding-bottom: 1em;
+}
+
+// Lista
+.item {
+    cursor: pointer;
+    &:hover {
+        background-color: $azul;
+        color: $branco;
+    }
+}
+
+// Detalhe
+.detalhe {
+    margin-top: 5em;
+}

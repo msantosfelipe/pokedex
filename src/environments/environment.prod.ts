@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  api: `https://pokeapi.co/api/v2`,
+  limitPaginacao: 10
 };
