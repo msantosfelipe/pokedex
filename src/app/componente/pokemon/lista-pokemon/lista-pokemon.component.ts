@@ -28,6 +28,7 @@ export class ListaPokemonComponent extends BaseComponent implements OnInit {
     this.listarPokemons();
   }
 
+  /** Chama serviço que lista todos os Pokemons com paginação */
   listarPokemons() {
     this.exibirLoading();
     this.pokemonService.listarPokemons(this.paginacao).subscribe((response: any) => {
@@ -39,23 +40,23 @@ export class ListaPokemonComponent extends BaseComponent implements OnInit {
           this.pokemons.push(pokemon);
         });
       }
-      this.esconderLoading();
-    }, (err => {
-      this.esconderLoading();
+    }, ((erro) => {
       this.dialogo.error('Ocorreu um erro');
-    }));
+    }), () => this.esconderLoading());
   }
 
-
+  /** Pagina a tabela */
   public pageChanged(event: any): void {
     this.paginacao.pagina = event.page;
     this.listarPokemons();
   }
 
+  /** Redireciona para página de detalhe */
   selecionar(pokemon: Pokemon) {
     this.router.navigate([`/pokemon/${this.getId(pokemon.url)}`]);
   }
 
+  /** Extrai o id do Pokemon */
   getId(url: string) {
     return url.split('pokemon/')[1].split('/')[0];
   }

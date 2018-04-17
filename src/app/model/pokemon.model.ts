@@ -12,6 +12,7 @@ export class Pokemon {
     ];
     sprites: {
         front_default: string;
+        back_default: string;
     };
     types: [
         {
@@ -26,5 +27,5 @@ export class Pokemon {
                 name: string
             }
         }
-    ]
+    ];
 }

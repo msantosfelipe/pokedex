@@ -1,4 +1,10 @@
 # Pokedex
+Aplicação desenvolvida em Angular 5 para listar e detalhar Pokémons
+
+Utilizando a API Pokéapi
+
+## Scripts Personalizados
+'teste-coverage': Roda os testes e gera a pasta '/coverage' com os relatórios
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
 

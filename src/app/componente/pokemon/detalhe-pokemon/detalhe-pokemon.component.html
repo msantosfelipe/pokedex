@@ -1,30 +1,37 @@
 <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px', fullScreenBackdrop: true }"></ngx-loading>
 <ng2-toasty></ng2-toasty>
 <div class="container space-up card detalhe">
-    <div class="col-12">
+    <div class="col-12 text-center">
         <h4>Detalhe do Pokémon <span *ngIf="pokemon">{{ pokemon.name | maiusculoPipe }}</span></h4>
-        <img *ngIf="pokemon" class="img-responsive" [src]="pokemon.sprites.front_default">
+        <img *ngIf="pokemon" class="img-responsive crescer" [src]="pokemon.sprites.front_default">
+        <img *ngIf="pokemon" class="img-responsive crescer" [src]="pokemon.sprites.back_default">
     </div>
-    <div class="container space-up" *ngIf="pokemon">
-        <h3>Altura: <span>{{ pokemon.height }}</span></h3>
-        <h3>Peso: <span>{{ pokemon.weight }}</span></h3>
+    <div class="container space-up text-center" *ngIf="pokemon">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <h3>Altura: <span>{{ pokemon.height }}</span></h3>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <h3>Peso: <span>{{ pokemon.weight }}</span></h3>
+            </div>
+        </div>
     </div>
     <div class="container space-up space-down">
         <div *ngIf="pokemon">
             <div class="row">
-                <div class="col-4">
+                <div class="col-md-4 col-sm-12">
                     <h4>Habilidades:</h4>
                     <span class="row" *ngFor="let abilitie of pokemon.abilities">
                         - {{ abilitie.ability.name | maiusculoPipe}}
                     </span>
                 </div>
-                <div class="col-4">
+                <div class="col-md-4 col-sm-12">
                     <h4>Tipos:</h4>
                     <span class="row" *ngFor="let tipo of pokemon.types">
                         - {{ tipo.type.name | maiusculoPipe}}
                     </span>
                 </div>
-                <div class="col-4">
+                <div class="col-md-4 col-sm-12">
                     <h4>Estatísticas:</h4>
                     <span class="row" *ngFor="let stat of pokemon.stats">
                         - {{ stat.stat.name | maiusculoPipe}}

@@ -14,9 +14,9 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
 
-    PokemonModule,
-    HttpClientModule
+    PokemonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

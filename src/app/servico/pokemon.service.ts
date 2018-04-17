@@ -10,6 +10,7 @@ export class PokemonService {
     private http: HttpClient
   ) { }
 
+  /** Lista Pokemons com paginação */
   listarPokemons(paginacao: Paginacao) {
     const param = new HttpParams()
       .append('limit', `${environment.limitPaginacao}`)
@@ -18,10 +19,12 @@ export class PokemonService {
     return this.http.get(`${environment.api}/pokemon`, { params: param });
   }
 
+  /** Busca detalhe de um Pokemon */
   buscarDetalhePokemon(id: number) {
     return this.http.get(`${environment.api}/pokemon/${id}`);
   }
 
+  /** Busca o offset de acordo com a página */
   private getOffset(pagina: number) {
     if (pagina !== 1) {
       return pagina * 10 - 10;
