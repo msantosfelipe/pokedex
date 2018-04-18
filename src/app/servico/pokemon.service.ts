@@ -19,9 +19,9 @@ export class PokemonService {
     return this.http.get(`${environment.api}/pokemon`, { params: param });
   }
 
-  /** Busca detalhe de um Pokemon */
-  buscarDetalhePokemon(id: number) {
-    return this.http.get(`${environment.api}/pokemon/${id}`);
+  /** Busca detalhe de um Pokemon pelo nome */
+  buscarDetalhePokemon(nome: string) {
+    return this.http.get(`${environment.api}/pokemon/${nome}`);
   }
 
   /** Busca o offset de acordo com a página */

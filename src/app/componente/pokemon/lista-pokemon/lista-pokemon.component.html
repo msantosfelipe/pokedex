@@ -22,9 +22,27 @@
     <div class="container space-up space-down">
         <div class="row">
             <div class="col-md-3 col-sm-6 item" *ngFor="let pokemon of pokemons" (click)="selecionar(pokemon)">
-                <span>
-                    {{ pokemon.name | maiusculoPipe }}
-                </span>
+                <div class="card-poke">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-4 div-imagem">
+                                <img *ngIf="pokemon" class="img-responsive imagem-card crescer-2x" [src]="pokemon.sprites.front_default">
+                            </div>
+                            <div class="col-8">
+                                <div class="row row-texto">
+                                    <div class="col-12 nome">
+                                        {{ pokemon.name | maiusculoPipe }}
+                                    </div>
+                                </div>
+                                <div class="row row-texto">
+                                    <div class="col-12 tipo">
+                                        {{ tipoPokemon(pokemon.types) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -1,9 +1,11 @@
+import { MaiusculoPipe } from './../../../compartilhado/pipe/maiusculo.pipe';
 import { ToastyService } from 'ng2-toasty';
 import { PokemonService } from './../../../servico/pokemon.service';
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from '../../base.componente';
 import { Pokemon } from '../../../model/pokemon.model';
 import { Router } from '@angular/router';
+import { forkJoin } from 'rxjs/observable/forkJoin';
 
 @Component({
   selector: 'app-lista-pokemon',
@@ -14,6 +16,7 @@ export class ListaPokemonComponent extends BaseComponent implements OnInit {
 
   public pokemons: Pokemon[];
   public total: number;
+  private maiusculoPipe = new MaiusculoPipe();
 
   constructor(
     private pokemonService: PokemonService,
@@ -35,14 +38,31 @@ export class ListaPokemonComponent extends BaseComponent implements OnInit {
       this.paginacao = this.getPaginacao(this.paginacao, response);
       if (response && response.count > 0) {
         this.total = response.count;
-        this.pokemons = new Array<Pokemon>();
-        response.results.forEach(pokemon => {
-          this.pokemons.push(pokemon);
-        });
+        this.chamarDetalhes(response.results);
       }
     }, ((erro) => {
+      this.esconderLoading();
       this.dialogo.error('Ocorreu um erro');
-    }), () => this.esconderLoading());
+    }));
+  }
+
+  /** Chama detalhes dos pokemons da paginação atual */
+  chamarDetalhes(listaPokemons) {
+    const listaRequisicoes = [];
+    listaPokemons.forEach((item, index) => {
+      listaRequisicoes.push(
+        this.pokemonService.buscarDetalhePokemon(listaPokemons[index].name));
+    });
+
+    forkJoin(listaRequisicoes).subscribe(response => {
+      this.pokemons = new Array<Pokemon>();
+      response.forEach(pokemon => {
+        this.pokemons.push(pokemon as Pokemon);
+      });
+    }, (e) => {
+      this.dialogo.error('Ocorreu um erro');
+    }, () => this.esconderLoading());
+
   }
 
   /** Pagina a tabela */
@@ -53,12 +73,21 @@ export class ListaPokemonComponent extends BaseComponent implements OnInit {
 
   /** Redireciona para página de detalhe */
   selecionar(pokemon: Pokemon) {
-    this.router.navigate([`/pokemon/${this.getId(pokemon.url)}`]);
+    this.router.navigate([`/pokemon/${pokemon.name}`]);
   }
 
-  /** Extrai o id do Pokemon */
-  getId(url: string) {
-    return url.split('pokemon/')[1].split('/')[0];
+  /** Retorna o texto com os tipos do Pokemon formatado */
+  tipoPokemon(tipos) {
+    let retorno = '';
+    tipos.forEach((element, index) => {
+      retorno = retorno.concat(
+        this.maiusculoPipe.transform(element.type.name));
+      if (index !== tipos.length - 1) {
+        retorno = retorno.concat(', ');
+      }
+    });
+
+    return retorno;
   }
 
 }

@@ -11,7 +11,7 @@ import { ToastyService } from 'ng2-toasty';
   styleUrls: ['./detalhe-pokemon.component.scss'],
 })
 export class DetalhePokemonComponent extends BaseComponent implements OnInit {
-  public id: number;
+  public nome: string;
   public pokemon: Pokemon;
 
   constructor(
@@ -30,8 +30,8 @@ export class DetalhePokemonComponent extends BaseComponent implements OnInit {
   /** Carrega o id do pokemon */
   carregarTela() {
     this.activatedRoute.params.subscribe((params) => {
-      this.id = params['id'];
-      if (this.id) {
+      this.nome = params['nome'];
+      if (this.nome) {
         this.buscarDetalhePokemon();
       }
     });
@@ -40,7 +40,7 @@ export class DetalhePokemonComponent extends BaseComponent implements OnInit {
   /** Chama o serviço de buscar detalhe do Pokemon */
   buscarDetalhePokemon() {
     this.exibirLoading();
-    this.pokemonService.buscarDetalhePokemon(this.id).subscribe(res => {
+    this.pokemonService.buscarDetalhePokemon(this.nome).subscribe(res => {
       this.pokemon = res as Pokemon;
     }, ((erro) => {
       this.dialogo.error('Ocorreu um erro');
