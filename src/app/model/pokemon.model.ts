@@ -1,3 +1,6 @@
+import { TipoPokemon } from './tipo-pokemon.model';
+import { SpritesPokemon } from './sprites-pokemon.model';
+
 export class Pokemon {
     height: string;
     weight: string;
@@ -10,17 +13,8 @@ export class Pokemon {
             }
         }
     ];
-    sprites: {
-        front_default: string;
-        back_default: string;
-    };
-    types: [
-        {
-            type: {
-                name: string;
-            }
-        }
-    ];
+    sprites: SpritesPokemon;
+    types: TipoPokemon[];
     stats: [
         {
             stat: {
@@ -28,4 +22,9 @@ export class Pokemon {
             }
         }
     ];
+
+    constructor() {
+        this.sprites = new SpritesPokemon();
+        this.types = new Array<TipoPokemon>();
+    }
 }

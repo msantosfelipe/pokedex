@@ -5,12 +5,15 @@ import { PaginationModule } from 'ngx-bootstrap/pagination/pagination.module';
 import { FormsModule } from '@angular/forms';
 import { ToastyModule } from 'ng2-toasty';
 
+import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
+
 @NgModule({
   imports: [
     CommonModule,
     PaginationModule.forRoot(),
     FormsModule,
     ToastyModule.forRoot(),
+    ProgressbarModule.forRoot()
   ],
   declarations: [
     MaiusculoPipe
@@ -19,7 +22,8 @@ import { ToastyModule } from 'ng2-toasty';
     MaiusculoPipe,
     PaginationModule,
     FormsModule,
-    ToastyModule
+    ToastyModule,
+    ProgressbarModule
   ]
 })
 export class CompartilhadoModule { }

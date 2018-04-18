@@ -17,7 +17,15 @@
         </div>
     </div>
 </div>
-<div class="container space-up card" *ngIf="isNotEmpty(pokemons)">
+<div class="container space-up space-down card" *ngIf="progress">
+    <div class="row">
+        <div class="col-6 col-center">
+            <small><em>{{textoProgress}}</em></small>
+            <progressbar [animate]="false" [value]="progress" type="success"><b>{{progress}}%</b></progressbar>
+        </div>
+    </div>
+</div>
+<div class="container space-up card" *ngIf="exibirTabela">
     <h4>Lista de Pokémons: (Total: {{ total }})</h4>
     <div class="container space-up space-down">
         <div class="row">
@@ -25,17 +33,17 @@
                 <div class="card-poke">
                     <div class="container">
                         <div class="row">
-                            <div class="col-4 div-imagem">
-                                <img *ngIf="pokemon" class="img-responsive imagem-card crescer-2x" [src]="pokemon.sprites.front_default">
+                            <div class="col-lg-4 col-md-12 div-imagem">
+                                <img *ngIf="pokemon.sprites" class="img-responsive imagem-card crescer-2x" [src]="pokemon.sprites.front_default">
                             </div>
-                            <div class="col-8">
+                            <div class="col-lg-8 col-md-12">
                                 <div class="row row-texto">
                                     <div class="col-12 nome">
                                         {{ pokemon.name | maiusculoPipe }}
                                     </div>
                                 </div>
                                 <div class="row row-texto">
-                                    <div class="col-12 tipo">
+                                    <div class="col-12 tipo" *ngIf="pokemon.types">
                                         {{ tipoPokemon(pokemon.types) }}
                                     </div>
                                 </div>

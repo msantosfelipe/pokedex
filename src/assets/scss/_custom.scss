@@ -52,6 +52,12 @@ a {
 
 .card {
     margin-bottom: 2em;
+    border-radius: 10px;
+}
+
+.col-center {
+    float: none;
+    margin: 0 auto;
 }
 
 // Paginacao
@@ -93,7 +99,7 @@ a {
 
 // Card
 .card-poke {
-    width: 15em;
+    min-width: 15em;
     border: 1px solid $cinza-claro;
     box-shadow: 0px 0px 0px 7px rgba(239, 239, 240, 1);
     cursor: pointer;
@@ -171,6 +177,7 @@ a {
 
 .div-imagem {
     background-color: $verde;
+    min-height: 5em;
 }
 
 .row-texto {
