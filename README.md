@@ -3,6 +3,9 @@ Aplicação desenvolvida em Angular 5 para listar e detalhar Pokémons
 
 Utilizando a API Pokéapi
 
+Deployed on Heroku:
+https://felipebbmp-angular-pokedex.herokuapp.com/
+
 ## Scripts Personalizados
 'teste-coverage': Roda os testes e gera a pasta '/coverage' com os relatórios
 
