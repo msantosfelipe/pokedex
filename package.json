@@ -4,12 +4,13 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "teste-coverage": "ng test --code-coverage=true"
+    "teste-coverage": "ng test --code-coverage=true",
+    "heroku-postbuild": "ng build --prod"
   },
   "private": true,
   "dependencies": {
@@ -24,11 +25,15 @@
     "@angular/router": "^5.2.0",
     "bootstrap": "^4.1.0",
     "core-js": "^2.4.1",
+    "express": "^4.17.1",
     "jquery": "^3.3.1",
     "ng2-toasty": "^4.0.3",
     "ngx-bootstrap": "^2.0.4",
     "ngx-loading": "^1.0.14",
+    "node-sass": "^4.12.0",
+    "path": "^0.12.7",
     "rxjs": "^5.5.6",
+    "typescript": "~2.5.3",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
@@ -48,7 +53,10 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.1.2",
     "ts-node": "~4.1.0",
-    "tslint": "~5.9.1",
-    "typescript": "~2.5.3"
+    "tslint": "~5.9.1"
+  },
+  "engines": {
+    "node": "10.16.3",
+    "npm": "6.9.0"
   }
 }
